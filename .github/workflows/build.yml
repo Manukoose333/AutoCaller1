@@ -12,12 +12,14 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Fix gradle wrapper
+      - name: Setup Gradle
         run: |
           mkdir -p gradle/wrapper
           curl -fL "https://raw.githubusercontent.com/gradle/gradle/v8.9.0/gradle/wrapper/gradle-wrapper.jar" -o gradle/wrapper/gradle-wrapper.jar
+          curl -fL "https://raw.githubusercontent.com/gradle/gradle/v8.9.0/gradlew" -o gradlew
+          chmod +x gradlew
       - name: Build APK
-        run: chmod +x gradlew && ./gradlew assembleDebug --stacktrace
+        run: ./gradlew assembleDebug --stacktrace
       - uses: actions/upload-artifact@v4
         with:
           name: AutoCaller-debug
