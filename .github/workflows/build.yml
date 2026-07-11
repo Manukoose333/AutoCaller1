@@ -13,7 +13,9 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - name: Fix gradle wrapper
-        run: curl -fL "https://raw.githubusercontent.com/gradle/gradle/v8.9.0/gradle/wrapper/gradle-wrapper.jar" -o gradle/wrapper/gradle-wrapper.jar
+        run: |
+          mkdir -p gradle/wrapper
+          curl -fL "https://raw.githubusercontent.com/gradle/gradle/v8.9.0/gradle/wrapper/gradle-wrapper.jar" -o gradle/wrapper/gradle-wrapper.jar
       - name: Build APK
         run: chmod +x gradlew && ./gradlew assembleDebug --stacktrace
       - uses: actions/upload-artifact@v4
