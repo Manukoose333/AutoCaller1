@@ -1,0 +1,3 @@
+-keep class androidx.datastore.** { *; }
+-keep class com.autocaller.service.** { *; }
+-keep class com.autocaller.AutoCallerApp { *; }
